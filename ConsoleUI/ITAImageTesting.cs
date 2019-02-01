@@ -13,18 +13,21 @@ namespace ConsoleUI
             stopwatch.Start();
 
             // Printing image details
-            ITAImage image = new ITAImage(@"ExampleImages/Octo.png");
+            ITAImage image = new ITAImage(@"ExampleImages/Penguin.jpg");
 
-            Console.WriteLine($"Image Path: { image.ImagePath }");
-            Console.WriteLine($"Image Height { image.Height }");
-            Console.WriteLine($"Image Width { image.Width }");
+            Console.WriteLine($"Original Image Path: { image.ImagePath }");
+            Console.WriteLine($"Original Image Height { image.OriginalHeight }");
+            Console.WriteLine($"Original Image Width { image.OriginalWidth }");
+            image.ResizeImage(50, 35);
             Console.WriteLine(image);
 
             // Printing elapsed time
             stopwatch.Stop();
             Console.WriteLine($"Elapsed Time: { stopwatch.Elapsed }");
             Console.WriteLine($"Elapsed Time(ms): { stopwatch.ElapsedMilliseconds }");  
-            Console.WriteLine($"Elapsed Time(ticks): { stopwatch.ElapsedTicks }");  
+            Console.WriteLine($"Elapsed Time(ticks): { stopwatch.ElapsedTicks }");
+
+            Console.ReadKey();
         }
     }
 }

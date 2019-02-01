@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="ConvertToASCII.cs" />
     <Compile Include="ConvertToBitmap.cs" />
+    <Compile Include="ImageResize.cs" />
     <Compile Include="ITAImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
