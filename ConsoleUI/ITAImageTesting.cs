@@ -13,7 +13,7 @@ namespace ConsoleUI
             stopwatch.Start();
 
             // Printing image details
-            ITAImage image = new ITAImage("ExampleImages/Drawing.png", '_', '@');
+            ITAImage image = new ITAImage(@"ExampleImages/Octo.png");
 
             Console.WriteLine($"Image Path: { image.ImagePath }");
             Console.WriteLine($"Image Height { image.Height }");

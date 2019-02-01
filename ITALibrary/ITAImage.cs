@@ -1,19 +1,24 @@
-﻿using System.Text;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace ITALibrary
 {
     public class ITAImage
     {
-        public string ImagePath { get; set; }
+        public string ImagePath { get; }
         public int Height { get; }
         public int Width { get; }
         public char WhiteColorCharacter { get; set; }
+        public char BlackColorCharacter { get; set; }
+        public char RGBBelowHundred { get; set; }
+        public char RGBBelowHundredAndFifty { get; set; }
+        public char RGBBelowTwoHundred { get; set; }
+        public char RGBBelowTwoHundredAndFifty { get; set; }
         public char OtherColorsCharacter { get; set; }
 
         private Bitmap Image { get; set; }
 
-        public ITAImage(string imagePath, char whiteColorCharacter = ' ', char otherColorsCharacter = '#')
+        public ITAImage(string imagePath, char whiteColorCharacter = ' ', char blackColorCharacter = '#', char rgbBelowHundred = '@',
+            char rgbBelowHundredAndFifty = 'g', char rgbBelowTwoHundred = '$', char rgbBelowTwoHundredAndFifty = ':', char otherColorsCharacter = '.')
         {
             this.ImagePath = imagePath;
 
@@ -22,32 +27,19 @@ namespace ITALibrary
             this.Height = bitmap.Height;
             this.Width = bitmap.Width;
             this.WhiteColorCharacter = whiteColorCharacter;
+            this.BlackColorCharacter = blackColorCharacter;
+            this.RGBBelowHundred = rgbBelowHundred;
+            this.RGBBelowHundredAndFifty = rgbBelowHundredAndFifty;
+            this.RGBBelowTwoHundred = rgbBelowTwoHundred;
+            this.RGBBelowTwoHundredAndFifty = rgbBelowTwoHundredAndFifty;
             this.OtherColorsCharacter = otherColorsCharacter;
         }
 
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-
-            for (int y = 0; y < Height; y++)
-            {
-                for (int x = 0; x < Width; x++)
-                {
-                    Color pixel = Image.GetPixel(x, y);
-
-                    if (pixel == Color.FromArgb(255, 255, 255, 255) || pixel == Color.FromArgb(0, 255, 255, 255))
-                    {
-                        sb.Append(WhiteColorCharacter);
-                    }
-                    else
-                    {
-                        sb.Append(OtherColorsCharacter);
-                    }
-                }
-                sb.Append("\n");
-            }
-            return sb.ToString();
+            return ConvertToASCII.Convert(Image, WhiteColorCharacter, BlackColorCharacter, RGBBelowHundred,
+                RGBBelowHundredAndFifty, RGBBelowTwoHundred, RGBBelowTwoHundredAndFifty, OtherColorsCharacter);
         }
     }
 }

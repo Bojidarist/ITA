@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertToASCII.cs" />
     <Compile Include="ConvertToBitmap.cs" />
     <Compile Include="ITAImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
