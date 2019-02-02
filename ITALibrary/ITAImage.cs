@@ -47,5 +47,10 @@ namespace ITALibrary
             return ConvertToASCII.Convert(Image, WhiteColorCharacter, BlackColorCharacter, RGBBelowHundred,
                 RGBBelowHundredAndFifty, RGBBelowTwoHundred, RGBBelowTwoHundredAndFifty, OtherColorsCharacter);
         }
+
+        public void SaveToFile(string fileName)
+        {
+            SaveASCII.SaveFile(fileName, this.ToString());
+        }
     }
 }

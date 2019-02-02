@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Text;
 
 namespace ITALibrary
@@ -44,7 +45,7 @@ namespace ITALibrary
                         sb.Append(otherColorsCharacter);
                     }
                 }
-                sb.Append("\n");
+                sb.Append(Environment.NewLine);
             }
             return sb.ToString();
         }
