@@ -7,31 +7,25 @@ namespace ITALibrary
         public string ImagePath { get; }
         public int OriginalHeight { get; }
         public int OriginalWidth { get; }
-        public char WhiteColorCharacter { get; set; }
-        public char BlackColorCharacter { get; set; }
-        public char RGBBelowHundred { get; set; }
-        public char RGBBelowHundredAndFifty { get; set; }
-        public char RGBBelowTwoHundred { get; set; }
-        public char RGBBelowTwoHundredAndFifty { get; set; }
-        public char OtherColorsCharacter { get; set; }
+
+        public ColorCharacters colorCharacters = new ColorCharacters();
 
         private Bitmap Image { get; set; }
 
-        public ITAImage(string imagePath, char whiteColorCharacter = ' ', char blackColorCharacter = '#', char rgbBelowHundred = '@',
-            char rgbBelowHundredAndFifty = 'g', char rgbBelowTwoHundred = '$', char rgbBelowTwoHundredAndFifty = ':', char otherColorsCharacter = '.')
+        public ITAImage(string imagePath)
         {
             this.ImagePath = imagePath;
             
             this.Image = ConvertToBitmap.Convert(imagePath);
             this.OriginalHeight = Image.Height;
             this.OriginalWidth = Image.Width;
-            this.WhiteColorCharacter = whiteColorCharacter;
-            this.BlackColorCharacter = blackColorCharacter;
-            this.RGBBelowHundred = rgbBelowHundred;
-            this.RGBBelowHundredAndFifty = rgbBelowHundredAndFifty;
-            this.RGBBelowTwoHundred = rgbBelowTwoHundred;
-            this.RGBBelowTwoHundredAndFifty = rgbBelowTwoHundredAndFifty;
-            this.OtherColorsCharacter = otherColorsCharacter;
+            this.colorCharacters.WhiteColorCharacter = ' ';
+            this.colorCharacters.BlackColorCharacter = '#';
+            this.colorCharacters.RGBBelowHundred = '@';
+            this.colorCharacters.RGBBelowHundredAndFifty = 'g';
+            this.colorCharacters.RGBBelowTwoHundred = '$';
+            this.colorCharacters.RGBBelowTwoHundredAndFifty = ':';
+            this.colorCharacters.OtherColorsCharacter = '.';
         }
 
         public void ResizeImage(int width, int height)
@@ -44,8 +38,9 @@ namespace ITALibrary
 
         public override string ToString()
         {
-            return ConvertToASCII.Convert(Image, WhiteColorCharacter, BlackColorCharacter, RGBBelowHundred,
-                RGBBelowHundredAndFifty, RGBBelowTwoHundred, RGBBelowTwoHundredAndFifty, OtherColorsCharacter);
+            return ConvertToASCII.Convert(Image, colorCharacters.WhiteColorCharacter, colorCharacters.BlackColorCharacter, colorCharacters.RGBBelowHundred,
+                colorCharacters.RGBBelowHundredAndFifty, colorCharacters.RGBBelowTwoHundred, 
+                colorCharacters.RGBBelowTwoHundredAndFifty, colorCharacters.OtherColorsCharacter);
         }
 
         public void SaveToFile(string fileName)

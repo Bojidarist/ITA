@@ -13,14 +13,19 @@ namespace ConsoleUI
             stopwatch.Start();
 
             // Printing image details
-            ITAImage image = new ITAImage(@"ExampleImages/Penguin.jpg");
-            string imageASCII = image.ToString();
+            ITAImage image = new ITAImage(@"ExampleImages/Octo.png");
 
             Console.WriteLine($"Original Image Path: { image.ImagePath }");
             Console.WriteLine($"Original Image Height { image.OriginalHeight }");
             Console.WriteLine($"Original Image Width { image.OriginalWidth }");
-            image.ResizeImage(750, 240);
-            image.SaveToFile("Image.txt");
+            image.ResizeImage(250, 60);
+            image.colorCharacters.WhiteColorCharacter = '▒';
+            image.colorCharacters.RGBBelowHundredAndFifty = '▓';
+            image.colorCharacters.BlackColorCharacter = '█';
+            image.colorCharacters.OtherColorsCharacter = '▒';
+            //image.SaveToFile("Image.txt");
+
+            string imageASCII = image.ToString();
             Console.WriteLine(imageASCII);
 
             // Printing elapsed time
